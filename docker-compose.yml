@@ -1,0 +1,20 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ${COMPOSE_PROJECT_NAME:-skid-homework}:latest
+    container_name: skid-homework
+    working_dir: /app
+    environment:
+      START_CMD: ${START_CMD:-pnpm exec vite preview --host 0.0.0.0 --port ${PORT:-5173} --config /app/vite.preview.config.ts}
+      PORT: ${PORT:-5173}
+    ports:
+      - "${PORT:-5173}:${PORT:-5173}"
+    networks:
+      - nginxproxymanager_default
+    # No profiles: default 'docker compose up -d' builds and starts this service
+
+networks:
+  nginxproxymanager_default:
+    external: true
