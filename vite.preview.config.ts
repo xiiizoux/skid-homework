@@ -1,6 +1,6 @@
 import { defineConfig } from "vite";
 import type { UserConfig } from "vite";
-import baseConfig from "../vite.config";
+import baseConfig from "./vite.config";
 
 const base = baseConfig as unknown as UserConfig;
 
